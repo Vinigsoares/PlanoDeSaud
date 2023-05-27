@@ -1,10 +1,7 @@
 package SaudeMaisOuMenos;
 
-public class Atendente {
-    String nome;
-    String senha;
-    String usuario;
-    String cpf;
+public class Atendente extends Funcionario {
+
 
     public Atendente(String nome, String senha, String usuario, String cpf) {
         this.nome = nome;
@@ -13,36 +10,13 @@ public class Atendente {
         this.cpf = cpf;
     }
 
-    public String getNome() {
-        return nome;
+
+    void cancelarPagamento(Cliente cliente, Venda venda) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    void adicionarDependente(Cliente cliente, Dependente dependente) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     

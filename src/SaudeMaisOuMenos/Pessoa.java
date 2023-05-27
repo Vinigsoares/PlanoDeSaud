@@ -1,8 +1,8 @@
 package SaudeMaisOuMenos;
 
 public abstract class Pessoa {
-    public String nome;
-    private String cpf;
+    String nome;
+    String cpf;
 
 
     public void setCpf(String cpf) {
@@ -11,6 +11,15 @@ public abstract class Pessoa {
 
     public String getCpf() {
         return cpf;
+    }
+    
+    
+    public void setNome(String nome) {
+        this.cpf = nome;
+    }
+
+    public String getNome() {
+        return nome;
     }
     
 

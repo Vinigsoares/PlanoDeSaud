@@ -5,11 +5,10 @@ import java.util.List;
 
 public class Cliente extends Pessoa {
 
+    static Cliente buscar;
     public String nSUS;
     //public Dependente d;
-    String nome;
-    String dataDeNascimento;
-    String cpf;
+    private String dataDeNascimento;
     int idade;
     PlanoSaude PlanoSaude;
     static List<Dependente> dependentes = new ArrayList<>();
@@ -24,13 +23,6 @@ public class Cliente extends Pessoa {
         Cliente.dependentes = new ArrayList<>();
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public String getDataDeNascimento() {
         return dataDeNascimento;
@@ -40,13 +32,7 @@ public class Cliente extends Pessoa {
         this.dataDeNascimento = dataDeNascimento;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
 
     public int getIdade() {
         return idade;
@@ -87,7 +73,7 @@ public class Cliente extends Pessoa {
     }
 
     public boolean possuiDependentes() {
-        return !dependentes.isEmpty();
+        return dependentes.isEmpty();
     }
 
     public void cancelarPlanoSaude() {
