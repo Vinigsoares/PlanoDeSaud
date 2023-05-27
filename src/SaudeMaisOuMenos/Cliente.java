@@ -6,7 +6,7 @@ import java.util.List;
 public class Cliente extends Pessoa {
 
     public String nSUS;
-    public Dependente d;
+    //public Dependente d;
     String nome;
     String dataDeNascimento;
     String cpf;
@@ -21,7 +21,7 @@ public class Cliente extends Pessoa {
         this.idade = idade;
         this.dataDeNascimento = dataDeNascimento;
         this.PlanoSaude = null;
-        this.dependentes = new ArrayList<>();
+        Cliente.dependentes = new ArrayList<>();
     }
 
     public String getNome() {
