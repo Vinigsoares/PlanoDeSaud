@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public class SistemaMaisOuMenosSaude {
     private static List<Gerente> gerentes = new ArrayList<>();
     private static List<Vendedor> vendedores = new ArrayList<>();
