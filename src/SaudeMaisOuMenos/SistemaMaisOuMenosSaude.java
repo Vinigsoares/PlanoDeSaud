@@ -18,54 +18,30 @@ public class SistemaMaisOuMenosSaude {
     
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        boolean sair = false;
-
-        while (!sair) {
-            exibirMenuPrincipal();
-            int opcao = scanner.nextInt();
-            scanner.nextLine(); 
-
-            switch (opcao) {
-                case 1:
-                    cadastrarGerente(scanner);
-                    break;
-                case 2:
-                    cadastrarVendedor(scanner);
-                    break;
-                case 3:
-                    cadastrarAtendente(scanner);
-                    break;
-                case 4:
-                    cadastrarCliente(scanner);
-                    break;
-                case 5:
-                    cadastrarDependente(scanner);
-                    break;
-                case 6:
-                    cadastrarPlanoSaude(scanner);
-                    break;
-                case 7:
-                    cadastrarEspecialidade(scanner);
-                    break;
-                case 8:
-                    exibirMenuGerente(scanner);
-                    break;
-                case 9:
-                    exibirMenuVendedor(scanner);
-                    break;
-                case 10:
-                    exibirMenuAtendente(scanner);
-                    break;
-                case 11:
-                    sair = true;
-                    break;
-                default:
-                    System.out.println("Opção inválida. Por favor, tente novamente.");
+        try (Scanner scanner = new Scanner(System.in)) {
+            boolean sair = false;
+            
+            while (!sair) {
+                exibirMenuPrincipal();
+                int opcao = scanner.nextInt();
+                scanner.nextLine();
+                
+                switch (opcao) {
+                    case 1 -> cadastrarGerente(scanner);
+                    case 2 -> cadastrarVendedor(scanner);
+                    case 3 -> cadastrarAtendente(scanner);
+                    case 4 -> cadastrarCliente(scanner);
+                    case 5 -> cadastrarDependente(scanner);
+                    case 6 -> cadastrarPlanoSaude(scanner);
+                    case 7 -> cadastrarEspecialidade(scanner);
+                    case 8 -> exibirMenuGerente(scanner);
+                    case 9 -> exibirMenuVendedor(scanner);
+                    case 10 -> exibirMenuAtendente(scanner);
+                    case 11 -> sair = true;
+                    default -> System.out.println("Opção inválida. Por favor, tente novamente.");
+                }
             }
         }
-
-        scanner.close();
     }
 
     private static void exibirMenuPrincipal() {
@@ -95,20 +71,15 @@ public class SistemaMaisOuMenosSaude {
         scanner.nextLine();
 
         switch (opcao) {
-            case 1:
+            case 1 -> {
                 System.out.println("Informe o CPF do cliente: ");
                 buscarClientePorCPF(scanner.nextLine());
-                break;
-            case 2:
-                atualizarPlanoSaudeCliente(scanner);
-                break;
-            case 3:
-                excluirCliente(scanner);
-                break;
-            case 4:
-                break;
-            default:
-                System.out.println("Opção inválida. Por favor, tente novamente.");
+            }
+            case 2 -> atualizarPlanoSaudeCliente(scanner);
+            case 3 -> excluirCliente(scanner);
+            case 4 -> {
+            }
+            default -> System.out.println("Opção inválida. Por favor, tente novamente.");
         }
     }
 
@@ -122,16 +93,11 @@ public class SistemaMaisOuMenosSaude {
         scanner.nextLine(); 
 
         switch (opcao) {
-            case 1:
-                buscarClientePorCPF(scanner.nextLine());
-                break;
-            case 2:
-                cadastrarVenda(scanner);
-                break;
-            case 3:
-                break;
-            default:
-                System.out.println("Opção inválida. Por favor, tente novamente.");
+            case 1 -> buscarClientePorCPF(scanner.nextLine());
+            case 2 -> cadastrarVenda(scanner);
+            case 3 -> {
+            }
+            default -> System.out.println("Opção inválida. Por favor, tente novamente.");
         }
     }
 
@@ -145,16 +111,11 @@ public class SistemaMaisOuMenosSaude {
         scanner.nextLine(); 
 
         switch (opcao) {
-            case 1:
-                cadastrarCliente(scanner);
-                break;
-            case 2:
-                cadastrarCancelamentoPlano(scanner);
-                break;
-            case 3:
-                break;
-            default:
-                System.out.println("Opção inválida. Por favor, tente novamente.");
+            case 1 -> cadastrarCliente(scanner);
+            case 2 -> cadastrarCancelamentoPlano(scanner);
+            case 3 -> {
+            }
+            default -> System.out.println("Opção inválida. Por favor, tente novamente.");
         }
     }
 
