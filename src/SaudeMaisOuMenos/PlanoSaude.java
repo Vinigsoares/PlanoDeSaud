@@ -1,14 +1,27 @@
 package SaudeMaisOuMenos;
 
-public class PlanoSaude {
-    String nomePlano;
-    double desconto;
-    String PlanoSaude;
 
-    public PlanoSaude(String nomePlano, double desconto) {
+public class PlanoSaude {
+    private int id;
+    String nomePlano;
+    private int desconto;
+    private int precoPlano;
+
+    public PlanoSaude(int id, String nomePlano, int desconto, int precoPlano) {
+        this.id = id;
         this.nomePlano = nomePlano;
         this.desconto = desconto;
+        this.precoPlano = desconto*precoPlano - precoPlano;
     }
+
+    public int getId() {
+        return id;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getNomePlano() {
         return nomePlano;
     }
@@ -17,15 +30,17 @@ public class PlanoSaude {
         return desconto;
     }
 
-    public void setDesconto(double desconto) {
+    public void setDesconto(int desconto) {
         this.desconto = desconto;
     }
-
-    public String getPlanoSaude() {
-        return PlanoSaude;
+    
+    public double getPrecoPlano() {
+        return precoPlano;
     }
 
-    public void setPlanoSaude(String PlanoSaude) {
-        this.PlanoSaude = PlanoSaude;
+    public void setPrecoPlano(int precoPlano) {
+        this.precoPlano = precoPlano;
     }
+    
 }
+

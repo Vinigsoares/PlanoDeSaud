@@ -5,12 +5,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SistemaMaisOuMenosSaude {
-    private static List<Gerente> gerentes = new ArrayList<>();
-    private static List<Vendedor> vendedores = new ArrayList<>();
-    private static List<Atendente> atendentes = new ArrayList<>();
-    private static List<Cliente> clientes = new ArrayList<>();
-    private static List<PlanoSaude> planosSaude = new ArrayList<>();
-    private static List<Especialidade> especialidades = new ArrayList<>();
+    private static  List<Gerente> gerentes = new ArrayList<>();
+    private static  List<Vendedor> vendedores = new ArrayList<>();
+    private static  List<Atendente> atendentes = new ArrayList<>();
+    private static  List<Cliente> clientes = new ArrayList<>();
+    private static  List<PlanoSaude> planosSaude = new ArrayList<>();
+    private static  List<Especialidade> especialidades = new ArrayList<>();
+    
+    public static List<Cliente> getClientes() {
+        return clientes;
+    }
+    public static List<PlanoSaude> getPlanoSaude() {
+        return planosSaude;
+    }
     
 
     public static void main(String[] args) {
@@ -23,18 +30,19 @@ public class SistemaMaisOuMenosSaude {
                 scanner.nextLine();
                 
                 switch (opcao) {
-                    case 1 -> cadastrarGerente(scanner);
-                    case 2 -> cadastrarVendedor(scanner);
-                    case 3 -> cadastrarAtendente(scanner);
-                    case 4 -> cadastrarCliente(scanner);
-                    case 5 -> cadastrarDependente(scanner);
-                    case 6 -> cadastrarPlanoSaude(scanner);
+                    case 1 -> Admnistrador.cadastrarGerente(scanner, gerentes);
+                    case 2 -> Gerente.cadastrarVendedor(scanner, vendedores);
+                    case 3 -> Gerente.cadastrarAtendente(scanner, atendentes);
+                    case 4 -> Atendente.cadastrarCliente(scanner, clientes);
+                    case 5 -> Atendente.cadastrarDependente(scanner);
+                    case 6 -> Admnistrador.cadastrarPlanoSaude(scanner,planosSaude );
                     case 7 -> cadastrarEspecialidade(scanner);
                     case 8 -> exibirMenuGerente(scanner);
                     case 9 -> exibirMenuVendedor(scanner);
                     case 10 -> exibirMenuAtendente(scanner);
-                    case 11 -> sair = true;
-                    default -> System.out.println("Opção inválida. Por favor, tente novamente.");
+                    case 11 -> Vendedor.mostrarPlano(planosSaude);
+                    case 12 -> sair = true;
+                    default -> System.out.println("Opcaoo invalida. Por favor, tente novamente.");
                 }
             }
         }
@@ -53,29 +61,27 @@ public class SistemaMaisOuMenosSaude {
         System.out.println("9. Acesso Vendedor");
         System.out.println("10. Acesso Atendente");
         System.out.println("11. Sair");
-        System.out.print("Escolha uma opção: ");
+        System.out.print("Escolha uma opcao: ");
     }
 
     private static void exibirMenuGerente(Scanner scanner) {
         System.out.println("----- MENU GERENTE -----");
         System.out.println("1. Buscar Cliente por CPF");
-        System.out.println("2. Atualizar Plano de Saúde de um Cliente");
-        System.out.println("3. Excluir Cliente");
-        System.out.println("4. Voltar ao Menu Principal");
-        System.out.print("Escolha uma opção: ");
+        System.out.println("2. Excluir Cliente");
+        System.out.println("3. Voltar ao Menu Principal");
+        System.out.print("Escolha uma opcaoo: ");
         int opcao = scanner.nextInt();
         scanner.nextLine();
 
         switch (opcao) {
             case 1 -> {
                 System.out.println("Informe o CPF do cliente: ");
-                buscarClientePorCPF(scanner.nextLine());
+                Gerente.buscarClientePorCPF(scanner.nextLine(), clientes);
             }
-            case 2 -> atualizarPlanoSaudeCliente(scanner);
-            case 3 -> excluirCliente(scanner);
-            case 4 -> {
+            case 2 -> Gerente.excluirCliente(scanner);
+            case 3 -> {
             }
-            default -> System.out.println("Opção inválida. Por favor, tente novamente.");
+            default -> System.out.println("Opcao invalida. Por favor, tente novamente.");
         }
     }
 
@@ -83,15 +89,17 @@ public class SistemaMaisOuMenosSaude {
         System.out.println("----- MENU VENDEDOR -----");
         System.out.println("1. Buscar Cliente por CPF");
         System.out.println("2. Cadastrar Venda");
-        System.out.println("3. Voltar ao Menu Principal");
+        System.out.println("3. Planos Disponíveis");
+        System.out.println("4. Voltar ao Menu Principal");
         System.out.print("Escolha uma opção: ");
         int opcao = scanner.nextInt();
         scanner.nextLine(); 
 
         switch (opcao) {
-            case 1 -> buscarClientePorCPF(scanner.nextLine());
-            case 2 -> cadastrarVenda(scanner);
-            case 3 -> {
+            case 1 -> Gerente.buscarClientePorCPF(scanner.nextLine(), clientes);
+            case 2 -> Vendedor.cadastrarVenda(scanner, planosSaude );
+            case 3 -> Vendedor.mostrarPlano(planosSaude);
+            case 4 -> {
             }
             default -> System.out.println("Opção inválida. Por favor, tente novamente.");
         }
@@ -107,138 +115,126 @@ public class SistemaMaisOuMenosSaude {
         scanner.nextLine(); 
 
         switch (opcao) {
-            case 1 -> cadastrarCliente(scanner);
-            case 2 -> cadastrarCancelamentoPlano(scanner);
+            case 1 -> Atendente.cadastrarCliente(scanner, clientes);
+            case 2 -> Atendente.cadastrarCancelamentoPlano(scanner, clientes);
             case 3 -> {
             }
             default -> System.out.println("Opção inválida. Por favor, tente novamente.");
         }
     }
 
-    private static void cadastrarGerente(Scanner scanner) {
-        System.out.println("Opção selecionada: Cadastrar Gerente");
-        System.out.print("Nome: ");
-        String nome = scanner.nextLine();
-        System.out.print("CPF: ");
-        String cpf = scanner.nextLine();
-        System.out.print("Usuário: ");
-        String usuario = scanner.nextLine();
-        System.out.print("Senha: ");
-        String senha = scanner.nextLine();
+    /*private static void cadastrarGerente(Scanner scanner) {
+    System.out.println("Opção selecionada: Cadastrar Gerente");
+    System.out.print("Nome: ");
+    String nome = scanner.nextLine();
+    System.out.print("CPF: ");
+    String cpf = scanner.nextLine();
+    System.out.print("Usuário: ");
+    String usuario = scanner.nextLine();
+    System.out.print("Senha: ");
+    String senha = scanner.nextLine();
+    
+    Gerente gerente = new Gerente(nome, cpf, usuario, senha);
+    gerentes.add(gerente);
+    System.out.println("Gerente cadastrado com sucesso!");
+    System.out.println();
+    }*/
 
-        Gerente gerente = new Gerente(nome, cpf, usuario, senha);
-        gerentes.add(gerente);
-        System.out.println("Gerente cadastrado com sucesso!");
-        System.out.println();
+    /*    private static void cadastrarVendedor(Scanner scanner) {
+    System.out.println("Opção selecionada: Cadastrar Vendedor");
+    System.out.print("Nome: ");
+    String nome = scanner.nextLine();
+    System.out.print("CPF: ");
+    String cpf = scanner.nextLine();
+    System.out.print("Usuário: ");
+    String usuario = scanner.nextLine();
+    System.out.print("Senha: ");
+    String senha = scanner.nextLine();
+    
+    Vendedor vendedor = new Vendedor(nome, cpf, usuario, senha);
+    vendedores.add(vendedor);
+    System.out.println("Vendedor cadastrado com sucesso!");
+    System.out.println();
+    }*/
+
+    /*    private static void cadastrarAtendente(Scanner scanner) {
+    System.out.println("Opção selecionada: Cadastrar Atendente");
+    System.out.print("Nome: ");
+    String nome = scanner.nextLine();
+    System.out.print("CPF: ");
+    String cpf = scanner.nextLine();
+    System.out.print("Usuário: ");
+    String usuario = scanner.nextLine();
+    System.out.print("Senha: ");
+    String senha = scanner.nextLine();
+    
+    Atendente atendente = new Atendente(nome, cpf, usuario, senha);
+    atendentes.add(atendente);
+    System.out.println("Atendente cadastrado com sucesso!");
+    System.out.println();
+    }*/
+
+    /*    private static void cadastrarCliente(Scanner scanner) {
+    System.out.println("Opção selecionada: Cadastrar Cliente");
+    System.out.print("Nome: ");
+    String nome = scanner.nextLine();
+    System.out.print("CPF: ");
+    String cpf = scanner.nextLine();
+    System.out.print("Idade: ");
+    int idade = scanner.nextInt();
+    System.out.println("Data de nascimento: ");
+    String dataDeNascimento = scanner.nextLine();
+    scanner.nextLine();
+    
+    Cliente cliente = new Cliente(nome, cpf, idade, dataDeNascimento);
+    clientes.add(cliente);
+    System.out.println("Cliente cadastrado com sucesso!");
+    System.out.println();
+    }*/
+    
+    /*    private static Cliente buscarClientePorCPF(String cpfCliente) {
+    for (Cliente cliente : clientes) {
+    if (cliente.getCpf().equals(cpfCliente)) {
+    System.out.println("-------Dados do Cliente-------");
+    System.out.println("Nome: "+ cliente.getNome());
+    System.out.println("Cpf: "+cliente.getCpf());
+    System.out.println("Idade: "+cliente.getIdade());
+    if(cliente.possuiDependentes()== false){
+    System.out.println("Cliente não possui dependente!");
+    }else{
+    System.out.println("Dependente: "+cliente.getDependentes());
+    return cliente;
     }
-
-    private static void cadastrarVendedor(Scanner scanner) {
-        System.out.println("Opção selecionada: Cadastrar Vendedor");
-        System.out.print("Nome: ");
-        String nome = scanner.nextLine();
-        System.out.print("CPF: ");
-        String cpf = scanner.nextLine();
-        System.out.print("Usuário: ");
-        String usuario = scanner.nextLine();
-        System.out.print("Senha: ");
-        String senha = scanner.nextLine();
-
-        Vendedor vendedor = new Vendedor(nome, cpf, usuario, senha);
-        vendedores.add(vendedor);
-        System.out.println("Vendedor cadastrado com sucesso!");
-        System.out.println();
     }
-
-    private static void cadastrarAtendente(Scanner scanner) {
-        System.out.println("Opção selecionada: Cadastrar Atendente");
-        System.out.print("Nome: ");
-        String nome = scanner.nextLine();
-        System.out.print("CPF: ");
-        String cpf = scanner.nextLine();
-        System.out.print("Usuário: ");
-        String usuario = scanner.nextLine();
-        System.out.print("Senha: ");
-        String senha = scanner.nextLine();
-
-        Atendente atendente = new Atendente(nome, cpf, usuario, senha);
-        atendentes.add(atendente);
-        System.out.println("Atendente cadastrado com sucesso!");
-        System.out.println();
     }
+    System.out.println("Cliente não encontrado.");
+    return null;
+    }*/
 
-    private static void cadastrarCliente(Scanner scanner) {
-        System.out.println("Opção selecionada: Cadastrar Cliente");
-        System.out.print("Nome: ");
-        String nome = scanner.nextLine();
-        System.out.print("CPF: ");
-        String cpf = scanner.nextLine();
-        System.out.print("Idade: ");
-        int idade = scanner.nextInt();
-        System.out.println("Data de nascimento: ");
-        String dataDeNascimento = scanner.nextLine();
-        scanner.nextLine(); 
-
-        Cliente cliente = new Cliente(nome, cpf, idade, dataDeNascimento);
-        clientes.add(cliente);
-        System.out.println("Cliente cadastrado com sucesso!");
-        System.out.println();
+    /*    private static void cadastrarDependente(Scanner scanner) {
+    System.out.println("Opção selecionada: Cadastrar Dependente");
+    System.out.print("CPF do Cliente: ");
+    String cpfCliente = scanner.nextLine();
+    Cliente cliente = buscarClientePorCPF(cpfCliente);
+    
+    if (cliente != null) {
+    System.out.print("Nome do Dependente: ");
+    String nomeDependente = scanner.nextLine();
+    System.out.print("Idade do Dependente: ");
+    int idadeDependente = scanner.nextInt();
+    scanner.nextLine();
+    
+    Dependente dependente = new Dependente(nomeDependente, idadeDependente);
+    Cliente.dependentes.add(dependente);
+    System.out.println("Dependente cadastrado com sucesso para o cliente " + cliente.nome + "!");
+    } else {
+    System.out.println("Cliente não encontrado. Cadastre o cliente antes de adicionar um dependente.");
     }
     
-    private static Cliente buscarClientePorCPF(String cpfCliente) {
-        for (Cliente cliente : clientes) {
-            if (cliente.getCpf().equals(cpfCliente)) {
-                System.out.println("-------Dados do Cliente-------");
-                System.out.println("Nome: "+ cliente.getNome());
-                System.out.println("Cpf: "+cliente.getCpf());
-                System.out.println("Idade: "+cliente.getIdade());
-                if(cliente.possuiDependentes()== false){
-                    System.out.println("Cliente não possui dependente!");
-                }else{
-                System.out.println("Dependente: "+cliente.getDependentes());
-                return cliente;
-                }
-            }
-        }
-        System.out.println("Cliente não encontrado.");
-        return null;
-    }
+    System.out.println();
+    }*/
 
-    private static void cadastrarDependente(Scanner scanner) {
-        System.out.println("Opção selecionada: Cadastrar Dependente");
-        System.out.print("CPF do Cliente: ");
-        String cpfCliente = scanner.nextLine();
-        Cliente cliente = buscarClientePorCPF(cpfCliente);
 
-        if (cliente != null) {
-            System.out.print("Nome do Dependente: ");
-            String nomeDependente = scanner.nextLine();
-            System.out.print("Idade do Dependente: ");
-            int idadeDependente = scanner.nextInt();
-            scanner.nextLine(); 
-
-            Dependente dependente = new Dependente(nomeDependente, idadeDependente);
-            Cliente.dependentes.add(dependente);
-            System.out.println("Dependente cadastrado com sucesso para o cliente " + cliente.nome + "!");
-        } else {
-            System.out.println("Cliente não encontrado. Cadastre o cliente antes de adicionar um dependente.");
-        }
-
-        System.out.println();
-    }
-
-    private static void cadastrarPlanoSaude(Scanner scanner) {
-        System.out.println("Opção selecionada: Cadastrar Plano de Saúde");
-        System.out.print("Nome do Plano: ");
-        String nomePlano = scanner.nextLine();
-        System.out.print("Percentual de Desconto (%): ");
-        double desconto = scanner.nextDouble();
-        scanner.nextLine();
-                                
-        PlanoSaude planoSaude = new PlanoSaude(nomePlano, desconto);
-        planosSaude.add(planoSaude);
-        System.out.println("Plano de Saúde cadastrado com sucesso!");
-        System.out.println();
-    }
 
     private static void cadastrarEspecialidade(Scanner scanner) {
         System.out.println("Opção selecionada: Cadastrar Especialidade");
@@ -254,80 +250,58 @@ public class SistemaMaisOuMenosSaude {
         System.out.println();
     }
 
-    private static void atualizarPlanoSaudeCliente(Scanner scanner) {
-        Cliente cliente = buscarClientePorCPF(scanner.nextLine());
 
-        if (cliente != null) {
-            System.out.print("Nome do Plano de Saúde: ");
-            String nomePlano = scanner.nextLine();
-            PlanoSaude planoSaude = buscarPlanoSaudePorNome(nomePlano);
 
-            if (planoSaude != null) {
-                cliente.setPlanoSaude(planoSaude);
-                System.out.println("Plano de Saúde atualizado com sucesso para o cliente " + cliente.nome + "!");
-            } else {
-                System.out.println("Plano de Saúde não encontrado.");
-            }
-        }
-
-        System.out.println();
+    
+    /*    private static void cadastrarVenda(Scanner scanner) {
+    System.out.print("CPF do Cliente: ");
+    String cpfCliente = scanner.nextLine();
+    Cliente cliente = buscarClientePorCPF(cpfCliente);
+    
+    if (cliente != null) {
+    System.out.print("Nome do Plano de Saúde Vendido: ");
+    String nomePlano = scanner.nextLine();
+    PlanoSaude planoSaude = buscarPlanoSaudePorNome(nomePlano);
+    
+    if (planoSaude != null) {
+    Venda vendas = new Venda(cliente, planoSaude);
+    Cliente.vendas.add(vendas);
+    System.out.println("Venda cadastrada com sucesso para o cliente " + cliente.nome + "!");
+    } else {
+    System.out.println("Plano de Saúde não encontrado.");
     }
-
-    private static void excluirCliente(Scanner scanner) {
-        Cliente cliente = buscarClientePorCPF(scanner.nextLine());
-
-
-        if (cliente != null) {
-            clientes.remove(cliente);
-            System.out.println("Cliente excluído com sucesso!");
-        }else {
-            System.out.println("Não possui clientes cadastrados!");
-        }
-       System.out.println();
     }
     
-    private static void cadastrarVenda(Scanner scanner) {
-        System.out.print("CPF do Cliente: ");
-        String cpfCliente = scanner.nextLine();
-        Cliente cliente = buscarClientePorCPF(cpfCliente);
-
-        if (cliente != null) {
-            System.out.print("Nome do Plano de Saúde Vendido: ");
-            String nomePlano = scanner.nextLine();
-            PlanoSaude planoSaude = buscarPlanoSaudePorNome(nomePlano);
-
-            if (planoSaude != null) {
-                Venda vendas = new Venda(cliente, planoSaude);
-                Cliente.vendas.add(vendas);
-                System.out.println("Venda cadastrada com sucesso para o cliente " + cliente.nome + "!");
-            } else {
-                System.out.println("Plano de Saúde não encontrado.");
-            }
-        }
-
-        System.out.println();
+    System.out.println();
+    }*/
+    /*    private static void mostrarPlano(Scanner scanner, List<PlanoSaude> planosSaude ){
+    System.out.println("Plano de Saúde disponíveis:");
+    for (PlanoSaude plano : planosSaude) {
+    System.out.println("ID: " + plano.getId() + ", Nome: " + plano.getNomePlano());
     }
+    }*/
+    
 
-    private static void cadastrarCancelamentoPlano(Scanner scanner) {
-        System.out.print("CPF do Cliente: ");
-        String cpfCliente = scanner.nextLine();
-        Cliente cliente = buscarClientePorCPF(cpfCliente);
-
-        if (cliente != null) {
-            cliente.cancelarPlanoSaude();
-            System.out.println("Plano de Saúde cancelado com sucesso para o cliente " + cliente.nome + "!");
-        }
-
-        System.out.println();
+    /*    private static void cadastrarCancelamentoPlano(Scanner scanner) {
+    System.out.print("CPF do Cliente: ");
+    String cpfCliente = scanner.nextLine();
+    Cliente cliente = buscarClientePorCPF(cpfCliente);
+    
+    if (cliente != null) {
+    cliente.cancelarPlanoSaude();
+    System.out.println("Plano de Saúde cancelado com sucesso para o cliente " + cliente.nome + "!");
     }
+    
+    System.out.println();
+    }*/
 
-    private static PlanoSaude buscarPlanoSaudePorNome(String nomePlano) {
-        for (PlanoSaude planoSaude : planosSaude) {
-            if (planoSaude.nomePlano.equalsIgnoreCase(nomePlano)) {
-                return planoSaude;
-            }
-        }
-
-        return null;
+    /*    private static PlanoSaude buscarPlanoSaudePorNome(String nomePlano) {
+    for (PlanoSaude planoSaude : planosSaude) {
+    if (planoSaude.nomePlano.equalsIgnoreCase(nomePlano)) {
+    return planoSaude;
     }
+    }
+    
+    return null;
+    }*/
 }

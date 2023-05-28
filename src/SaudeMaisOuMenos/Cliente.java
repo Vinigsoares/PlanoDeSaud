@@ -4,25 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente extends Pessoa {
-
-    static Cliente buscar;
+    //static Cliente buscar;
     public String nSUS;
     //public Dependente d;
     private String dataDeNascimento;
-    int idade;
-    PlanoSaude PlanoSaude;
-    static List<Dependente> dependentes = new ArrayList<>();
-    static List<Venda> vendas = new ArrayList<>();
+    private int idade;
+    private PlanoSaude PlanoSaude;
+    public static List<Dependente> dependentes = new ArrayList<>();
 
     public Cliente(String nome, String cpf, int idade, String dataDeNascimento) {
-        this.nome = nome;
-        this.cpf = cpf;
+        super(nome, cpf);
         this.idade = idade;
         this.dataDeNascimento = dataDeNascimento;
         this.PlanoSaude = null;
         Cliente.dependentes = new ArrayList<>();
     }
-
+ 
 
     public String getDataDeNascimento() {
         return dataDeNascimento;
@@ -42,13 +39,6 @@ public class Cliente extends Pessoa {
         this.idade = idade;
     }
 
-    public static List<Venda> getVendas() {
-        return vendas;
-    }
-
-    public static void setVendas(List<Venda> vendas) {
-        Cliente.vendas = vendas;
-    }
     public void setPlanoSaude(PlanoSaude planoSaude) {
         this.PlanoSaude = planoSaude;
     }

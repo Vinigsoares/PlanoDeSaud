@@ -1,12 +1,20 @@
 package SaudeMaisOuMenos;
 
-public class Venda {
+import java.util.List;
+
+public class Venda{
     private Cliente cliente;
     private PlanoSaude planoSaude;
+    public Vendedor vendedor;
 
-    public Venda(Cliente cliente, PlanoSaude planoSaude) {
+    public Venda(Vendedor vendedor, Cliente cliente, PlanoSaude planoSaude) {
         this.cliente = cliente;
         this.planoSaude = planoSaude;
+        this.vendedor = vendedor;
+    }
+
+    public Vendedor getVendedor() {
+        return vendedor;
     }
 
     public Cliente getCliente() {
@@ -17,7 +25,5 @@ public class Venda {
         return planoSaude;
     }
 
-    int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
 }

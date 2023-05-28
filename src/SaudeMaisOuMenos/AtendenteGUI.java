@@ -4,125 +4,60 @@
  */
 package SaudeMaisOuMenos;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AtendenteGUI extends JFrame {
-    private final Atendente atendente;
-    private JTextField cpfTextField;
-    private JTextField vendaIdTextField;
-    private JTextField dependenteNomeTextField;
-    private JTextField dependenteIdadeTextField;
+public class AtendenteGUI {
 
-    public AtendenteGUI(Atendente atendente) {
-        this.atendente = atendente;
+    private JFrame frame;
+    private JPanel panel;
+    private JButton venderPlanoButton;
+    private JButton registrarPagamentoButton;
+    private JButton buscarClienteButton;
+    private JButton cancelarPagamentoButton;
+    private JButton adicionarDependenteButton;
+
+    public AtendenteGUI() {
         initialize();
     }
 
     private void initialize() {
-        // Set up the JFrame
-        setTitle("Atendente");
-        setSize(400, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
+        frame = new JFrame("Módulo de Atendente");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Create the main panel
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(4, 2));
+        panel = new JPanel();
+        panel.setLayout(new GridLayout(5, 1));
 
-        // Create labels and text fields
-        JLabel cpfLabel = new JLabel("CPF:");
-        cpfTextField = new JTextField();
-        JLabel vendaIdLabel = new JLabel("ID da Venda:");
-        vendaIdTextField = new JTextField();
-        JLabel dependenteNomeLabel = new JLabel("Nome do Dependente:");
-        dependenteNomeTextField = new JTextField();
-        JLabel dependenteIdadeLabel = new JLabel("Idade do Dependente:");
-        dependenteIdadeTextField = new JTextField();
+        venderPlanoButton = new JButton("Vender Plano");
+        registrarPagamentoButton = new JButton("Registrar Pagamento");
+        buscarClienteButton = new JButton("Buscar Cliente");
+        cancelarPagamentoButton = new JButton("Cancelar Pagamento");
+        adicionarDependenteButton = new JButton("Adicionar Dependente");
 
-        // Add labels and text fields to the main panel
-        mainPanel.add(cpfLabel);
-        mainPanel.add(cpfTextField);
-        mainPanel.add(vendaIdLabel);
-        mainPanel.add(vendaIdTextField);
-        mainPanel.add(dependenteNomeLabel);
-        mainPanel.add(dependenteNomeTextField);
-        mainPanel.add(dependenteIdadeLabel);
-        mainPanel.add(dependenteIdadeTextField);
-
-        // Create buttons
-        JButton cancelarPagamentoButton = new JButton("Cancelar Pagamento");
-        JButton adicionarDependenteButton = new JButton("Adicionar Dependente");
-
-        // Add action listeners to the buttons
-        cancelarPagamentoButton.addActionListener((ActionEvent e) -> {
-            cancelarPagamento();
-        });
-
-        adicionarDependenteButton.addActionListener((ActionEvent e) -> {
-            adicionarDependente();
-        });
-
-        // Create a panel for the buttons
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(cancelarPagamentoButton);
-        buttonPanel.add(adicionarDependenteButton);
-
-        // Add the main panel and button panel to the JFrame
-        add(mainPanel, BorderLayout.CENTER);
-        add(buttonPanel, BorderLayout.SOUTH);
-
-        // Display the JFrame
-        setVisible(true);
-    }
-
-    private void cancelarPagamento() {
-        String cpf = cpfTextField.getText();
-        int vendaId = Integer.parseInt(vendaIdTextField.getText());
-
-        Cliente cliente = Cliente.buscarCliente(cpf);
-        if (cliente != null) {
-            Venda venda = null;
-            for (Venda v : Cliente.getVendas()) {
-                if (v.getId() == vendaId) {
-                    venda = v;
-                    break;
-                }
-            }
-            if (venda != null) {
-                atendente.cancelarPagamento(cliente, venda);
-                JOptionPane.showMessageDialog(this, "Pagamento cancelado com sucesso!");
+        venderPlanoButton.addActionListener((ActionEvent e) -> {
+            // Lógica para vender plano
+            String cpf = JOptionPane.showInputDialog(frame, "Digite o CPF do cliente:");
+            Cliente cliente = Cliente.buscarCliente(cpf);
+            if (cliente != null) {
+                cliente.venderPlano();
+                JOptionPane.showMessageDialog(frame, "Plano vendido com sucesso para o cliente: " + cliente.getNome());
             } else {
-                JOptionPane.showMessageDialog(this, "Venda não encontrada!");
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Cliente não encontrado!");
-        }
-    }
+                JOptionPane.showMessageDialog(frame, "Cliente não encontrado.");
+            }       });
+        // Adicionando componentes ao painel
+        panel.add(venderPlanoButton);
 
-    private void adicionarDependente() {
-        String cpf = cpfTextField.getText();
-        String nome = dependenteNomeTextField.getText();
-        int idade = Integer.parseInt(dependenteIdadeTextField.getText());
+        // Adicionando painel ao quadro
+        frame.add(panel);
 
-      
-
-        Cliente cliente = Cliente.buscarCliente(cpf);
-        if (cliente != null) {
-            Dependente dependente = new Dependente(nome, idade);
-            atendente.adicionarDependente(cliente, dependente);
-            JOptionPane.showMessageDialog(this, "Dependente adicionado com sucesso!");
-        } else {
-            JOptionPane.showMessageDialog(this, "Cliente não encontrado!");
-        }
-    }
-
-    public static void main(String[] args) {
-        Atendente atendente = new Atendente();
-        AtendenteGUI atendenteGUI = new AtendenteGUI(atendente);
-    }
+        // Configurações do quadro
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+}
 }
 
 
