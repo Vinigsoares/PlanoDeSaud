@@ -36,7 +36,7 @@ public class LoginFrame extends JFrame
       //Constroi os componentes
       btnCadastrar = new JButton("Salvar");
       txtNomePssiente = new JTextField(10);     
-      txtcpf = new JTextField(10);
+      txtCpf = (JPasswordField) new JTextField(10);
       lblnome = new JLabel("Nome");
       lblcpf = new JLabel("CPF");
       lblidade = new JLabel("Idade");
@@ -55,7 +55,7 @@ public class LoginFrame extends JFrame
       add(lblMsg); 
     
      btnCadastrar.addActionListener(e -> {
-          cred.setCredenciais(txtNomePssiente.getText(), txtCpf.getText());
+          pessoa.set(txtNomePssiente.getText(), txtCpf.getText());
           System.out.println(txtNomePssiente.getText() + txtCpf.getText());
           this.dispose(); //fecha a caixa de diálogo
      }); 

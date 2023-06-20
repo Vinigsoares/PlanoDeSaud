@@ -304,4 +304,6 @@ public class SistemaMaisOuMenosSaude {
     
     return null;
     }*/
+     LoginFrame frmLogin = new LoginFrame(new Credenciais()); 
+        frmLogin.exibir();
 }

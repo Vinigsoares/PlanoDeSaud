@@ -1,6 +1,8 @@
 package SaudeMaisOuMenos;
 
-public abstract class Pessoa {
+import java.io.Serializable;
+
+public abstract class Pessoa implements Serializable{
     private String nome;
     private String cpf;
 
@@ -31,5 +33,9 @@ public abstract class Pessoa {
     public String setAndGetCpf(String cpf){
         this.cpf = cpf;
         return this.cpf;
+    }
+
+    void set(String text, String text0) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

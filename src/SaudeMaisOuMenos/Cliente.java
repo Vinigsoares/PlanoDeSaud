@@ -1,9 +1,10 @@
 package SaudeMaisOuMenos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cliente extends Pessoa {
+public class Cliente extends Pessoa  {
     //static Cliente buscar;
     public String nSUS;
     //public Dependente d;
