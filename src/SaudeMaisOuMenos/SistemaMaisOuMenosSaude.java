@@ -19,6 +19,10 @@ public class SistemaMaisOuMenosSaude {
         return planosSaude;
     }
     
+    public static List<Vendedor> getVendedor() {
+        return vendedores;
+    }
+    
 
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
@@ -304,6 +308,8 @@ public class SistemaMaisOuMenosSaude {
     
     return null;
     }*/
-     LoginFrame frmLogin = new LoginFrame(new Credenciais()); 
-        frmLogin.exibir();
+    
+    
+     //LoginFrame frmLogin = new LoginFrame(new Credenciais()); 
+       // frmLogin.exibir();
 }

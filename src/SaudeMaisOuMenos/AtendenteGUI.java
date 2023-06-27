@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package SaudeMaisOuMenos;
 
 
+import static SaudeMaisOuMenos.SistemaMaisOuMenosSaude.getClientes;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -40,7 +38,7 @@ public class AtendenteGUI {
         venderPlanoButton.addActionListener((ActionEvent e) -> {
             // Lógica para vender plano
             String cpf = JOptionPane.showInputDialog(frame, "Digite o CPF do cliente:");
-            Cliente cliente = Cliente.buscarCliente(cpf);
+            Cliente cliente = Gerente.buscarClientePorCPF(cpf, getClientes());
             if (cliente != null) {
                 cliente.venderPlano();
                 JOptionPane.showMessageDialog(frame, "Plano vendido com sucesso para o cliente: " + cliente.getNome());
@@ -59,5 +57,4 @@ public class AtendenteGUI {
         frame.setVisible(true);
 }
 }
-
 

@@ -62,7 +62,7 @@ public class Atendente extends Funcionario {
             int idadeDependente = scanner.nextInt();
             scanner.nextLine(); 
 
-            Dependente dependente = new Dependente(nomeDependente, idadeDependente);
+            Dependente dependente = new Dependente(nomeDependente,idadeDependente);
             Cliente.dependentes.add(dependente);
             System.out.println("Dependente cadastrado com sucesso para o cliente " + cliente.getNome() + "!");
         } else {

@@ -1,6 +1,7 @@
 package SaudeMaisOuMenos;
 
 import static SaudeMaisOuMenos.SistemaMaisOuMenosSaude.getClientes;
+import static SaudeMaisOuMenos.SistemaMaisOuMenosSaude.getVendedor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,7 +10,7 @@ public class Vendedor extends Funcionario{
 
     public int totalVendas;
     private final double comissao;
-    private  List<Venda> vendas;
+    private static  List<Venda> vendas;
     public Venda venda;
     
         public Vendedor(String nome, String senha, String usuario, String cpf) {
@@ -31,6 +32,9 @@ public class Vendedor extends Funcionario{
         System.out.print("CPF do Cliente: ");
         String cpfCliente = scanner.nextLine();
         Cliente cliente = Gerente.buscarClientePorCPF(cpfCliente, getClientes());
+        System.out.print("nCtps do Vendedor: ");
+        String nctpsVendedor = scanner.nextLine();
+        Vendedor vendedor = Gerente.buscarVendedor(nctpsVendedor, getVendedor());
 
         if (cliente != null) {
             System.out.print("Nome do Plano de Saúde Vendido: ");
@@ -38,7 +42,7 @@ public class Vendedor extends Funcionario{
             PlanoSaude planoSaude = buscarPlanoSaudePorNome(nomePlano, planosSaude);
 
             if (planoSaude != null) {
-                Venda venda = new Venda(this, cliente, planoSaude);
+                Venda venda = new Venda(vendedor, cliente, planoSaude);
                 vendas.add(venda);
                 System.out.println("Venda cadastrada com sucesso para o Vendedor " + vendedor.getNome() + "!");
             } else {

@@ -29,6 +29,21 @@ public class Gerente extends Funcionario {
         return null;
     }
     
+     public static Vendedor buscarVendedor(String nCtps, List<Vendedor> vendedores){
+         for (Vendedor vendedor : vendedores){
+             if (vendedor.nCtps.equals(nCtps)){
+                System.out.println("-------Dados do Cliente-------");
+                System.out.println("Nome: "+ vendedor.getNome());
+                return vendedor; 
+             }                       
+         } 
+        System.out.println("Vendedor não encontrado.");
+        return null;  
+     }
+        
+    
+    
+    
     public static void cadastrarVendedor(Scanner scanner, List<Vendedor> vendedores) {
         System.out.println("Opção selecionada: Cadastrar Vendedor");
         System.out.print("Nome: ");
