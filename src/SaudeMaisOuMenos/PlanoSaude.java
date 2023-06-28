@@ -25,7 +25,7 @@ public class PlanoSaude {
     public String getNomePlano() {
         return nomePlano;
     }
-
+    
     public double getDesconto() {
         return desconto;
     }

@@ -1,6 +1,6 @@
 
 package SaudeMaisOuMenos;
-
+/**
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Thiago
- */
+ 
 public class LoginFrame extends JFrame 
 {
    private JTextField txtNomePssiente; 
@@ -65,3 +65,7 @@ public class LoginFrame extends JFrame
    }
  
 }
+* 
+* voltar a analizar
+* 
+*/

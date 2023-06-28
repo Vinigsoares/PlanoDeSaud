@@ -77,7 +77,17 @@ public class Cliente extends Pessoa  {
     }
 
     void venderPlano() {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+           
+        adicionarClienteNaListaDeClientesAtivos();
     }
+    
+    public void entrarEmContatoComCliente () {
+        
+    }
+    
+    public void adicionarClienteNaListaDeClientesAtivos() {
+
+    }
+
 
 }
