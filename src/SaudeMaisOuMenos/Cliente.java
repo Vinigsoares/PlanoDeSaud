@@ -75,19 +75,11 @@ public class Cliente extends Pessoa  {
             System.out.println("O cliente não possui um Plano de Saúde ativo.");
         }
     }
-
-    void venderPlano() {
-           
-        adicionarClienteNaListaDeClientesAtivos();
-    }
-    
-    public void entrarEmContatoComCliente () {
-        
-    }
-    
     public void adicionarClienteNaListaDeClientesAtivos() {
 
     }
-
+    void venderPlano() {
+        adicionarClienteNaListaDeClientesAtivos();
+    }
 
 }

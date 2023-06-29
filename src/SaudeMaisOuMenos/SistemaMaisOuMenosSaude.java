@@ -3,8 +3,9 @@ package SaudeMaisOuMenos;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.JFrame;
 
-public class SistemaMaisOuMenosSaude {
+public class SistemaMaisOuMenosSaude extends JFrame {
     private static  List<Gerente> gerentes = new ArrayList<>();
     private static  List<Vendedor> vendedores = new ArrayList<>();
     private static  List<Atendente> atendentes = new ArrayList<>();
@@ -23,8 +24,8 @@ public class SistemaMaisOuMenosSaude {
         return vendedores;
     }
     
-
-    public static void main(String[] args) {
+   
+    public static void main(String[] args) {  
         try (Scanner scanner = new Scanner(System.in)) {
             boolean sair = false;
             
@@ -54,6 +55,7 @@ public class SistemaMaisOuMenosSaude {
 
     private static void exibirMenuPrincipal() {
         System.out.println("----- MENU PRINCIPAL -----");
+        System.out.println("AJUDAR HEITTOR COM INTERFACE GRAFICA");
         System.out.println("1. Cadastrar Gerente");
         System.out.println("2. Cadastrar Vendedor");
         System.out.println("3. Cadastrar Atendente");
@@ -100,8 +102,14 @@ public class SistemaMaisOuMenosSaude {
         scanner.nextLine(); 
 
         switch (opcao) {
-            case 1 -> Gerente.buscarClientePorCPF(scanner.nextLine(), clientes);
-            case 2 -> Vendedor.cadastrarVenda(scanner, planosSaude );
+            case 1 -> {
+                 System.out.println("Informe o CPF do cliente: ");
+                Gerente.buscarClientePorCPF(scanner.nextLine(), clientes);   
+            }
+            case 2 -> { 
+                 System.out.println("");
+                Vendedor.cadastrarVenda(scanner, planosSaude );
+            }
             case 3 -> Vendedor.mostrarPlano(planosSaude);
             case 4 -> {
             }
@@ -312,4 +320,5 @@ public class SistemaMaisOuMenosSaude {
     
      //LoginFrame frmLogin = new LoginFrame(new Credenciais()); 
        // frmLogin.exibir();
+
 }

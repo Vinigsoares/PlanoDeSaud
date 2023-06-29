@@ -23,8 +23,8 @@ public abstract class Pessoa implements Serializable{
     }
     
     
-    public void setNome(String nome) {
-        this.cpf = nome;
+    public void setNome(String nome, String text1) {
+        this.nome = nome;
     }
 
     public String getNome() {
@@ -37,5 +37,5 @@ public abstract class Pessoa implements Serializable{
         this.cpf = cpf;
         return this.cpf;
     }
-
+    
 }

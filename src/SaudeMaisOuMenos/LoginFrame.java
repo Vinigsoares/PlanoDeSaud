@@ -1,6 +1,6 @@
 
 package SaudeMaisOuMenos;
-/**
+
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -14,10 +14,10 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Thiago
- 
+ */
 public class LoginFrame extends JFrame 
 {
-   private JTextField txtNomePssiente; 
+   private JTextField txtNomePaciente; 
    private JPasswordField txtCpf; 
    private JButton btnCadastrar;
    private JLabel lblnome;
@@ -32,7 +32,7 @@ public class LoginFrame extends JFrame
       
       //Constroi os componentes
       btnCadastrar = new JButton("Salvar");
-      txtNomePssiente = new JTextField(10);     
+      txtNomePaciente = new JTextField(10);     
       txtCpf = (JPasswordField) new JTextField(10);
       lblnome = new JLabel("Nome");
       lblcpf = new JLabel("CPF");
@@ -45,15 +45,15 @@ public class LoginFrame extends JFrame
       add(lblcpf);
       add(lblidade);
       add(lbldatanasc);
-      add(txtNomePssiente);
+      add(txtNomePaciente);
       add(lblcpf);
       add(txtCpf );
       add(btnCadastrar);     
       add(lblMsg); 
     
      btnCadastrar.addActionListener(e -> {
-          pessoa.set(txtNomePssiente.getText(), txtCpf.getText());
-          System.out.println(txtNomePssiente.getText() + txtCpf.getText());
+          pessoa.setNome(txtNomePaciente.getText(), txtCpf.getText());
+          System.out.println(txtNomePaciente.getText() + txtCpf.getText());
           this.dispose(); //fecha a caixa de diálogo
      }); 
    }
@@ -63,9 +63,4 @@ public class LoginFrame extends JFrame
         this.setSize(400, 100);
         this.setVisible(true);
    }
- 
 }
-* 
-* voltar a analizar
-* 
-*/
