@@ -7,10 +7,6 @@ package SaudeMaisOuMenos;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- *
- * @author Vinícius
- */
 public class Admnistrador {
     
     public static void cadastrarGerente(Scanner scanner, List<Gerente> gerentes) {
@@ -35,6 +31,7 @@ public class Admnistrador {
         System.out.print("Id do Plano: ");
         int id = scanner.nextInt();
         System.out.print("Nome do Plano: ");
+        scanner.nextLine();
         String nomePlano = scanner.nextLine();
         System.out.print("Preço do Plano: ");
         int precoPlano = scanner.nextInt();
